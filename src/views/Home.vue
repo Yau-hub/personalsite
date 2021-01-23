@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ul class="ul slick-box">
+    	<li v-for="item in banner"><img :src="item" alt=""></li>
+    	
+    </ul>
   </div>
 </template>
 
@@ -9,10 +11,31 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
+
+
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    HelloWorld,
+  },
+  data(){
+	  return {
+		  logoUrl:require("../assets/img/sitelogo.jpg"),
+		  banner:this.$store.state.homeBanner,
+	  }
+  },
+  beforeCreate(){
+	   this.$store.commit('getHomeBanner');
+  },
+  mounted() {
+	 
+  	this.$nextTick(function(){
+		$(".slick-box").slick({
+			arrows:false,
+			slidesToShow:1,
+		});
+  		
+  	})
   }
 }
 </script>
