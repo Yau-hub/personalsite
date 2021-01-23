@@ -26,6 +26,7 @@ export default new Vuex.Store({
 					  return "https://cn.bing.com/"+item.url
 				  })
 				  state.homeBanner = bnArrs;
+				  this.reload
 				}).catch(function (error) {
 		        console.log(error)
 		      });

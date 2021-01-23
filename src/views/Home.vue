@@ -21,22 +21,31 @@ export default {
   data(){
 	  return {
 		  logoUrl:require("../assets/img/sitelogo.jpg"),
-		  banner:this.$store.state.homeBanner,
+		  // banner:this.$store.state.homeBanner,
 	  }
   },
   beforeCreate(){
 	   this.$store.commit('getHomeBanner');
-	  
+		
   },
   mounted() {
-	 
-  	this.$nextTick(function(){
-		$(".slick-box").slick({
-			arrows:false,
-			slidesToShow:1,
-		});
-  		
-  	})
+  	
+  },
+  computed:{
+	  banner(){
+		  return this.$store.state.homeBanner;
+		  
+	  }
+  },
+  watch:{
+	  banner(val, oldVal){//普通的watch监听
+		  this.$nextTick(function(){
+			$(".slick-box").slick({
+				arrows:false,
+				slidesToShow:1,
+			});
+		  })
+	  },
   }
 }
 </script>
