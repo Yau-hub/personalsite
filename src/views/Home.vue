@@ -26,6 +26,7 @@ export default {
   },
   beforeCreate(){
 	   this.$store.commit('getHomeBanner');
+	  
   },
   mounted() {
 	 
