@@ -33,8 +33,8 @@ export default {
   },
   computed:{
 	  banner(){
+		  console.log(1);
 		  return this.$store.state.homeBanner;
-		  
 	  }
   },
   watch:{
