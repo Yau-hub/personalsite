@@ -22,11 +22,12 @@ export default new Vuex.Store({
 				  method: "get",
 				  params: {}
 				}).then(res => {
+					console.log(res)
 				  let bnArrs = res.data.images.map(function(item){
 					  return "https://cn.bing.com/"+item.url
 				  })
 				  state.homeBanner = bnArrs;
-				  this.reload
+			
 				}).catch(function (error) {
 		        console.log(error)
 		      });
