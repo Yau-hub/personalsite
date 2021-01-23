@@ -18,7 +18,7 @@ export default new Vuex.Store({
 	  getHomeBanner(state){
 		  if(state.homeBanner.length <= 0){
 		   axios({
-				  url: "/bing/HPImageArchive.aspx?format=js&idx=5&n=5&mkt=zh-CN",
+				  url: "/HPImageArchive.aspx?format=js&idx=5&n=5&mkt=zh-CN",
 				  method: "get",
 				  params: {}
 				}).then(res => {
