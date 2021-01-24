@@ -109,11 +109,15 @@ a:focus {
 .fl{ float: left;}
 .fr{ float: right;}
 
-.auto-1440{max-width: 1440px;margin: auto;}
+.auto-1400{max-width: 1400px;margin: auto;}
 @media  (max-width: 1440px){
-    .auto-1440{padding: 0 2%;}
+    auto-1400{padding: 0 2%;}
 }
 
+body{
+	position: relative;
+	padding-top: 72px;
+}
 
 
 

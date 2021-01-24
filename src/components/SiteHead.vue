@@ -1,6 +1,6 @@
 <template>
 	<div class="head">
-		<div class="auto-1440 clearfix">
+		<div class="auto-1400 clearfix">
 		<router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
 		    <a :href="href" @click="navigate" class="logo" :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"><img :src="logoUrl" alt=""></a>
 		</router-link>
@@ -8,7 +8,7 @@
 			<ul class="ul site-nav clearfix">
 				<li><router-link to="/">首页</router-link></li>
 				<li><router-link to="/about">关于</router-link></li>
-				<li><router-link to="/about">工作</router-link></li>
+				<li><router-link to="/work">工作</router-link></li>
 				<li><router-link to="/about">生活</router-link></li>
 				<li><router-link to="/about">其他</router-link></li>
 			</ul>
@@ -35,7 +35,15 @@
 
 <style lang="scss">
 	.head{
-		.auto-1440{
+		position: fixed;
+		width: 100%;
+		left: 0;
+		right: 0;
+		top:0;
+		margin: auto;
+		background-color: #fff;
+		box-shadow: 0 0 5px 5px #f4f4f4;
+		.auto-1400{
 			position: relative;
 		}
 		.logo{
@@ -46,10 +54,14 @@
 			img{
 				max-height: 70px;
 			}
+			
+		}
+		@media (max-width:1400px) {
+			.logo{left: 2%;}
 		}
 		.site-nav{
 			float: right;
-			padding: 2% 0;
+			padding: 1.2% 0;
 			li{
 				float: left;
 				padding:0 50px;
@@ -78,10 +90,10 @@
 				padding: 10px 0;
 				position: relative;
 		
-				&.router-link-active{
+				&.router-link-exact-active{
 					color: $main-hover-color;
 				}
-				&.router-link-active::after{
+				&.router-link-exact-active::after{
 					content:"";
 					display: blick;
 					width: 100%;
