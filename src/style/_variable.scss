@@ -1,2 +1,12 @@
 $main-color:#333;
 $main-hover-color:#6495ED;
+.transition{
+	transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+.scale{
+	transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+}

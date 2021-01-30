@@ -1,18 +1,22 @@
 <template>
   <div id="app">
 	  <site-head></site-head>
-	 
-  
      <router-view/>
-  </div>
+	 <site-footer></site-footer>
+	</div>
 </template>
 
 <script>
 	import SiteHead from '@/components/SiteHead.vue'
+	import SiteFooter from '@/components/SiteFooter.vue'
 	export default{
 		name: 'Main',
 		components:{
-			SiteHead
+			SiteHead,
+			SiteFooter
+		},
+		mounted(){
+		
 		}
 	}
 </script>
@@ -111,13 +115,18 @@ a:focus {
 
 .auto-1400{max-width: 1400px;margin: auto;}
 @media  (max-width: 1440px){
-    auto-1400{padding: 0 2%;}
+    .auto-1400{padding: 0 2%;}
 }
 
 body{
 	position: relative;
 	padding-top: 72px;
 }
+
+@media  (max-width: 1000px){
+    body{padding-top: 52px;}
+}
+
 
 
 

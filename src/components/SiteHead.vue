@@ -9,9 +9,10 @@
 				<li><router-link to="/">首页</router-link></li>
 				<li><router-link to="/about">关于</router-link></li>
 				<li><router-link to="/work">工作</router-link></li>
-				<li><router-link to="/about">生活</router-link></li>
+				<li><router-link to="/lifes">生活</router-link></li>
 				<li><router-link to="/about">其他</router-link></li>
 			</ul>
+			<div class="nav-btn"><i></i></div>
 			
 		
 			
@@ -28,6 +29,31 @@
 				
 			}
 		},
+		mounted(){
+			this.$nextTick(function(){
+				$(".nav-btn").click(function(){
+					$(this).toggleClass("open");
+					$(".site-nav").slideToggle();
+				
+				})
+				
+				$(window).resize(function(){
+					$(".head .site-nav li").unbind("click");
+					$(".site-nav").hide();
+					if($(window).width() <= 1000){
+						$(".head .site-nav li").click(function(e){
+							$(".nav-btn").removeClass("open")
+							$(".site-nav").slideUp();
+							if ( e && e.stopPropagation ) e.stopPropagation();
+							else window.event.cancelBubble = true;
+						})
+					}else{
+						$(".nav-btn").removeClass("open")
+						$(".site-nav").show();
+					}
+				}).trigger("resize");
+			})
+		}
 		
 	}
 	
@@ -43,6 +69,7 @@
 		margin: auto;
 		background-color: #fff;
 		box-shadow: 0 0 5px 5px #f4f4f4;
+		z-index:500;
 		.auto-1400{
 			position: relative;
 		}
@@ -56,9 +83,8 @@
 			}
 			
 		}
-		@media (max-width:1400px) {
-			.logo{left: 2%;}
-		}
+		
+		
 		.site-nav{
 			float: right;
 			padding: 1.2% 0;
@@ -108,6 +134,81 @@
 				
 				
 			}
+		}
+		.nav-btn{
+			float: right;
+			width: 40px;
+			height: 40px;
+			position: relative;
+			margin:5px 0 5px 10px;
+			display: none;
+			@extend .transition;
+		
+			&::before,&::after{
+				content:"";
+			}
+			i,&::before,&::after{
+				position: absolute;
+				display: block;
+				background-color: $main-color;
+				width: 80%;
+				height: 1px;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			i{
+				top:0;
+				bottom:0;
+			}
+			&::before{
+				top: 20%;
+			}
+			&::after{
+				bottom: 20%;
+			}
+			&.open{transform: rotate(45deg);-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);}
+			&.open i{display: none;}
+			&.open::after,&.open::before{
+				top:0;bottom: 0;
+			}
+			&.open::before{
+				width: 80%;
+				height: 1px;
+			}
+			&.open::after{
+				width: 1px;
+				height: 80%;
+			}
+			
+			
+		}
+		@media (max-width:1400px) {
+			.logo{left: 2%;}
+		}
+		@media  (max-width:1000px){
+			.site-nav{
+				display: none;
+				position: absolute;
+				width:100%;
+				padding: 5% 0;
+				left:0;
+				right:0;
+				top:100%;background-color: #fff;
+				box-shadow: 0 2px 2px 1px #eee;
+				li{
+					width: 100%;
+					margin: 0;
+					padding: 0 2%;
+					text-align: center;
+					&::before{display: none;}
+				}
+			}
+			.logo img{
+				max-height: 40px;
+			}
+			.nav-btn{display: block;}
+			
 		}
 	}
 </style>

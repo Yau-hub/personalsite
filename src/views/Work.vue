@@ -2,7 +2,14 @@
 	<div class="auto-1400 work-main clearfix">
 		<div class="aside">
 			<ul class="ul clearfix nav">
-				<li v-for="(item,i) in content" :data-id="item.id"><a href="javascript:void(0);">{{item.text}}</a></li>
+				<li v-for="(item,i) in content" >
+					<a href="javascript:void(0);" :data-id="item.id">{{item.text}}</a>
+					<i class="nav-btn"></i>
+					<dl>
+						<dd v-for="(items,index) in item.data" ><a href="javascript:void(0);" :data-id="index" :data-ctg="item.id">{{items.title}}</a></dd>
+					</dl>
+				
+				</li>
 			
 			</ul>
 		</div>
@@ -10,8 +17,8 @@
 			<section class="sec" :id="content[0].id">
 				<h3 class="title">{{content[0].text}}</h3>
 				<ul class="cont ul clearfix">
-					<li v-for="item in content[0].data">
-						<h4 class="tit">{{item.title}}</h4>
+					<li v-for="(item,index) in content[0].data">
+						<h4 class="tit" :id="content[0].id+ index">{{item.title}}</h4>
 						<div class="info clearfix">
 							<code>
 								{{item.detail}}
@@ -27,7 +34,7 @@
 			<section class="sec" :id="content[1].id">
 				<h3 class="title">{{content[1].text}}</h3>
 				<ul class="cont ul clearfix">
-					<li v-for="item in content[1].data">
+					<li v-for="(item,index) in content[1].data" :id="content[1].id+ index">
 						<h4 class="tit">{{item.title}}</h4>
 						<div class="info clearfix">
 							<code>
@@ -43,7 +50,7 @@
 				<h3 class="title">{{content[2].text}}</h3>
 				
 				<ul class="links ul clearfix">
-					<li v-for="item in content[2].data">
+					<li v-for="(item,index) in content[2].data" :id="content[2].id+ index">
 						<a :href="item.href" target="_blank" :title="item.title">{{item.title}}</a>
 						</li>
 				</ul>
@@ -52,7 +59,11 @@
 		
 			<section class="sec" :id="content[3].id">
 				<h3 class="title">{{content[3].text}}</h3>
-				
+				<ul class="links ul clearfix">
+				<li v-for="(item,index) in content[3].data" :id="content[3].id+ index">
+					<a :href="item.href" target="_blank" download :title="item.title">{{item.title}}</a>
+					</li>
+					</ul>
 			</section>
 	
 			
@@ -736,20 +747,43 @@
 							{
 								title:"webstorm 配置sass",
 								href:"https://blog.csdn.net/fengmin_w/article/details/80930286"
-							},
-							{
-								title:"",
-								href:""
-							},
-							{
-								title:"",
-								href:""
 							}
 						]
 					},
 					{
 						id:"plug",
-						text:"插件"
+						text:"插件",
+						data:[
+							
+							{
+								title:"web模板",
+								href:"files/web.zip"
+							},
+							{
+								title:"fancybox",
+								href:"files/fancybox.zip"
+							},
+							{
+								title:"aos",
+								href:"files/aos.zip"
+							},
+							{
+								title:"counter",
+								href:"files/counter.zip"
+							},
+							{
+								title:"html看书翻页",
+								href:"files/html看书翻页.zip"
+							},
+							{
+								title:"scrollbar",
+								href:"files/scrollbar.zip"
+							},
+							{
+								title:"wow-循环出现",
+								href:"files/wow-循环出现.zip"
+							}
+						]
 					},
 				]
 			}
@@ -757,15 +791,36 @@
 		mounted(){
 			var that = this;
 			this.$nextTick(function(){
+				$(".work-main .aside li").each(function(){
+					if($(this).find("dd").length>0){
+						$(this).addClass("has-sub");
+						$(this).find(".nav-btn").click(function(){
+							$(this).toggleClass("open");
+							$(this).siblings("dl").slideToggle();
+							
+							$(this).parents('li').siblings("li").find(".nav-btn").removeClass("open");
+							$(this).parents('li').siblings("li").find("dl").slideUp();
+						})
+					}
+				})
 				
-				
-				$('.aside li').click(function(e){
+				$('.aside li >a').click(function(e){
 					var id = e.currentTarget.dataset.id;
 					$('html , body').animate({scrollTop: ($('#'+id).offset().top - 100) +"px"}, 0);
 					$(this).addClass("on").siblings().removeClass("on");
 				})
+				$('.aside li dd >a').click(function(e){
+					var id = e.currentTarget.dataset.id;
+					var ctg = e.currentTarget.dataset.ctg;
+					$('html , body').animate({scrollTop: ($('#'+ctg+id).offset().top - 100) +"px"}, 0);
+					$('.aside li,.aside li dd >a').removeClass("on")
+					// $(this).addClass("on");
+					$(this).parents("li").addClass("on")
+					
+				})
 				
-				var disTop = $(window).height()*0.38;
+				var disTop = $(".head").height() + ($(window).width()*0.04);
+				var subDisTop = $(window).height()*0.8;
 				that.content.map(function(item,i){
 					var index = i+1;
 					$(window).scroll(function(){
@@ -773,8 +828,18 @@
 						if(scrollTop >= ($('#'+item.id).offset().top - disTop)){
 						 $('.aside li:nth-child('+ index +')').addClass("on").siblings().removeClass("on");
 						}
+						
+						// item.data.map(function(items,is){
+						// 	if(scrollTop >= ($('#'+item.id+is).offset().top - subDisTop)){
+						// 	$('.aside li:nth-child('+ index +')').siblings().find("dd a").removeClass("on");
+						// 	 $('.aside li:nth-child('+ index +') dd:nth-child(' +is+') a').addClass("on").parents().siblings().find('a').removeClass("on");
+							
+						// 	}
+						// });
 								
 					})
+					
+					
 				})
 				
 				$(window).scroll(function(){
@@ -834,15 +899,72 @@
 				font-size: 18px;
 				
 			}
-			li.on a{
-			color:$main-hover-color;
+			li{
+				position: relative;
+				&.on >a{
+				color:$main-hover-color;
+				}
+				&.on .nav-btn::after,&.on .nav-btn::before{
+					background-color: $main-hover-color;
+				}
+				&.has-sub{
+					.nav-btn{display: block;}
+				}
+			}
+			
+			.nav-btn{
+				display: none;
+				width:20px;
+				height: 20px;
+				position: absolute;
+				top:13px;
+				right:0;
+				cursor: pointer;
+				&::after,&::before{
+					content:'';
+					display: block;
+					background-color: $main-color;
+					position: absolute;
+					top:0;
+					right:0;
+					bottom:0;
+					left:0;
+					margin: auto;
+					
+				}
+				&::after{width: 80%;height: 1px;}
+				&::before{height: 80%;width: 1px;}
+				&.open::before{display: none;}
+			}
+			dl{ 
+				display: none;
+				a{
+					display: block;
+					padding:5px 5px 5px 15px;
+					font-size: 14px;
+					color: #666;
+					&:hover,&.on{
+						color:$main-hover-color;
+					}
+			}
 			}
 			
 			&.fixed{
 				position: fixed;
 				top: 82px;
+				overflow: auto;
+				max-height: calc(100% - 120px);
 			}
-			
+			&.fixed{-ms-overflow-style: none;scrollbar-width: none; overflow: -moz-scrollbars-none;
+			scrollbar-base-color: transparent;
+			scrollbar-3dlight-color: transparent;
+			scrollbar-highlight-color: transparent;
+			scrollbar-track-color: transparent;
+			scrollbar-arrow-color: transparent;
+			scrollbar-shadow-color: transparent;
+			scrollbar-dark-shadow-color: transparent;
+			}
+			&.fixed::-webkit-scrollbar {display: none; }
 			
 		}
 		
@@ -890,6 +1012,19 @@
 				}
 			}
 			
+		}
+		@media (max-width:1000px) {
+			.aside{
+				position: relative!important;
+				width: 100%;
+				float: none;
+				margin-bottom: 5%;
+				top: auto!important;
+			}
+			.content{
+				width: 100%;
+				float: none;
+			}
 		}
 	}
 </style>

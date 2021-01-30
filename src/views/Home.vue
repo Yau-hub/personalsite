@@ -1,9 +1,13 @@
 <template>
   <div class="home">
-    <ul class="ul slick-box">
-    	<li v-for="item in banner"><img :src="item" alt=""></li>
-    	
-    </ul>
+    <div class="home-bn">
+		<ul class="ul slick-box">
+			<li v-for="item in banner">
+				<figure class="pic bg-cover" :style="'background-image: url('+item+');'"></figure>
+			</li>
+			
+		</ul>
+	</div>
   </div>
 </template>
 
@@ -42,3 +46,12 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+	.home{
+		.home-bn{
+			.pic{
+				padding-bottom: 31.25%;
+			}
+		}
+	}
+</style>

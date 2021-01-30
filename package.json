@@ -7,12 +7,16 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
     "jquery": "^3.5.1",
     "slick-carousel": "^1.8.1",
     "vue": "^2.6.12",
+    "vue-loader": "^15.9.6",
     "vue-router": "^3.4.9",
+    "vue-waterfall": "^1.0.6",
+    "vue-waterfall2": "^1.10.1",
     "vuex": "^3.6.0"
   },
   "devDependencies": {
