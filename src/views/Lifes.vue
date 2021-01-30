@@ -1,5 +1,6 @@
 <template>
 	<div class="life auto-1400">
+		<div class="load-tip">数据加载中……</div>
 		<div class="data  auto-1400">
 			<waterfall :col="col" :data="dataList">
 			      <!--  @loadmore="loadmore"
@@ -104,9 +105,21 @@ import fancybox from "@fancyapps/fancybox";
 						that.col = 2;
 					}
 				}).trigger("resize");
-				
-				
 				$('.fancybox').fancybox();
+				
+				
+				
+				let hideLoad = setInterval(function(){
+					let lastIndex = that.dataList.length -1;
+					if($(".vue-waterfall .vue-waterfall-column").eq(lastIndex)){
+						if($(".vue-waterfall .vue-waterfall-column").eq(lastIndex).find("div").length > 0){
+							$(".load-tip").slideUp();
+							clearInterval(hideLoad);
+						}else{
+							$(".load-tip").slideDown();
+						}
+					}
+				},300)
 			})
 			
 		},
@@ -122,6 +135,12 @@ import fancybox from "@fancyapps/fancybox";
 	.life{
 		padding: 4% 0%;
 		overflow: hidden;
+		.load-tip{
+			margin-bottom: 2%;
+			text-align: center;
+			font-size: 18px;
+			display: none;
+			}
 		.data{
 			margin: 0 -10px;
 		}
