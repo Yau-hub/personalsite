@@ -68,7 +68,7 @@
 		top:0;
 		margin: auto;
 		background-color: #fff;
-		box-shadow: 0 0 5px 5px #f4f4f4;
+		box-shadow: 0 0 5px 1px #666;
 		z-index:500;
 		.auto-1400{
 			position: relative;

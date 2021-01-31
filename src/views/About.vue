@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <div class="auto-1400 clear">
+		<figure class="pic bg-cover"></figure>
+	</div>
   </div>
 </template>
 <script>
@@ -8,3 +10,8 @@
 		 name: 'About'
 	}
 </script>
+<style lang="scss">
+	.about{
+		padding: 4% 0;
+	}
+</style>
