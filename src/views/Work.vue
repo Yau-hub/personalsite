@@ -865,9 +865,12 @@
 					
 				})
 				if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-					new WOW({mobile: false}).init();
+					new WOW().init();
 				};
 				$(".work-main .aside").addClass("animated");
+				if($(window).width() <=1000){
+					$(".wow").addClass("animated");
+				}
 			})
 			
 			
@@ -887,6 +890,10 @@
 		@media (max-width:1400px) {
 			&{padding: 4% 2%;}
 		}
+		.wow.animated{
+			visibility: visible!important;
+			animation-name: fadeInUp!important;
+			}
 		.aside{
 			float: left;
 			width: 250px;
