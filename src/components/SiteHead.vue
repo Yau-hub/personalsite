@@ -10,7 +10,7 @@
 				<li><router-link to="/about">关于</router-link></li>
 				<li><router-link to="/work">工作</router-link></li>
 				<li><router-link to="/lifes">生活</router-link></li>
-				<li><router-link to="/about">其他</router-link></li>
+				<li><router-link to="/other">其他</router-link></li>
 			</ul>
 			<div class="nav-btn"><i></i></div>
 			

@@ -35,6 +35,9 @@ export default {
 		$(".slick-box").slick({
 			arrows:false,
 			slidesToShow:1,
+			dots:true,
+			autoplay: true,
+			autoplaySpeed: 3000,
 		});
   	})
   },
@@ -51,6 +54,55 @@ export default {
 		.home-bn{
 			.pic{
 				padding-bottom: 31.25%;
+			}
+			.slick-dots{
+				position: absolute;
+				left:0;
+				bottom: 5%;
+				width: 100%;
+				text-align: center;
+				li{
+					display: inline-block;
+					border-radius: 50%;
+					border:2px solid #fff;
+					height: 16px;
+					width: 16px;
+					margin: 0 5px;
+					opacity: 0.8;
+					position: relative;
+					cursor: pointer;
+					&.slick-active{
+						opacity: 1;;
+						border-color: $main-hover-color;
+						&::after{
+							content:"";
+							display: block;
+							width: 50%;
+							height: 50%;
+							position: absolute;
+							left:0;
+							bottom:0;
+							right:0;
+							top:0;
+							margin:auto;
+							border-radius: 50%;
+							background-color: $main-hover-color;
+						}
+					}
+					*{display: none!important;}
+				}
+			}
+		}
+		
+		@media (max-width:1000px) {
+			.home-bn{
+				.slick-dots{
+					li{
+						height: 10px;
+						width:10px;
+						border-width:1px;
+						}
+				}
 			}
 		}
 	}

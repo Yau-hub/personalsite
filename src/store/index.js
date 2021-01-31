@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-	  logoUrl:require("../assets/img/sitelogo.jpg"),
+	  logoUrl:require("../assets/img/sitelogo.png"),
 	  homeBanner:[
 		"https://cn.bing.com//th?id=OHR.FichtelbergWinter_ZH-CN9274877146_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
 		"https://cn.bing.com//th?id=OHR.PailonDelDiablo_ZH-CN9146230830_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",

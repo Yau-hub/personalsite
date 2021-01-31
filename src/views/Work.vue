@@ -1,6 +1,6 @@
 <template>
 	<div class="auto-1400 work-main clearfix">
-		<div class="aside">
+		<div class="aside wow fadeInUp">
 			<ul class="ul clearfix nav">
 				<li v-for="(item,i) in content" >
 					<a href="javascript:void(0);" :data-id="item.id">{{item.text}}</a>
@@ -13,11 +13,11 @@
 			
 			</ul>
 		</div>
-		<div class="content">
+		<div class="content wow fadeInUp">
 			<section class="sec" :id="content[0].id">
-				<h3 class="title">{{content[0].text}}</h3>
+				<h3 class="title wow fadeInUp">{{content[0].text}}</h3>
 				<ul class="cont ul clearfix">
-					<li v-for="(item,index) in content[0].data">
+					<li v-for="(item,index) in content[0].data" class="wow fadeInUp">
 						<h4 class="tit" :id="content[0].id+ index">{{item.title}}</h4>
 						<div class="info clearfix">
 							<code>
@@ -32,9 +32,9 @@
 			</section>
 			
 			<section class="sec" :id="content[1].id">
-				<h3 class="title">{{content[1].text}}</h3>
-				<ul class="cont ul clearfix">
-					<li v-for="(item,index) in content[1].data" :id="content[1].id+ index">
+				<h3 class="title wow fadeInUp">{{content[1].text}}</h3>
+				<ul class="cont ul clearfix ">
+					<li v-for="(item,index) in content[1].data" :id="content[1].id+ index" class="wow fadeInUp">
 						<h4 class="tit">{{item.title}}</h4>
 						<div class="info clearfix">
 							<code>
@@ -47,10 +47,10 @@
 			</section>
 		
 			<section class="sec" :id="content[2].id">
-				<h3 class="title">{{content[2].text}}</h3>
+				<h3 class="title wow fadeInUp">{{content[2].text}}</h3>
 				
 				<ul class="links ul clearfix">
-					<li v-for="(item,index) in content[2].data" :id="content[2].id+ index">
+					<li v-for="(item,index) in content[2].data" :id="content[2].id+ index" class="wow fadeInUp">
 						<a :href="item.href" target="_blank" :title="item.title">{{item.title}}</a>
 						</li>
 				</ul>
@@ -58,9 +58,9 @@
 			</section>
 		
 			<section class="sec" :id="content[3].id">
-				<h3 class="title">{{content[3].text}}</h3>
+				<h3 class="title wow fadeInUp">{{content[3].text}}</h3>
 				<ul class="links ul clearfix">
-				<li v-for="(item,index) in content[3].data" :id="content[3].id+ index">
+				<li v-for="(item,index) in content[3].data" :id="content[3].id+ index" class="wow fadeInUp">
 					<a :href="item.href" target="_blank" download :title="item.title">{{item.title}}</a>
 					</li>
 					</ul>
@@ -825,18 +825,11 @@
 					var index = i+1;
 					$(window).scroll(function(){
 						var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-						if(scrollTop >= ($('#'+item.id).offset().top - disTop)){
+						if($('#'+item.id).offset() && scrollTop >= ($('#'+item.id).offset().top - disTop)){
 						 $('.aside li:nth-child('+ index +')').addClass("on").siblings().removeClass("on");
 						}
 						
-						// item.data.map(function(items,is){
-						// 	if(scrollTop >= ($('#'+item.id+is).offset().top - subDisTop)){
-						// 	$('.aside li:nth-child('+ index +')').siblings().find("dd a").removeClass("on");
-						// 	 $('.aside li:nth-child('+ index +') dd:nth-child(' +is+') a').addClass("on").parents().siblings().find('a').removeClass("on");
-							
-						// 	}
-						// });
-								
+						
 					})
 					
 					
@@ -851,7 +844,10 @@
 					}
 							
 				}).trigger("scroll");
-				
+				$(window).resize(function(){
+					$(".work-main .aside .nav-btn").removeClass("open");
+					$(".work-main .aside dl").slideUp();
+				})
 				$(".copy-btn").click(function(){
 				   var code = $(this).prev("code");
 					code.after('<input style="position:absolute;opacity:0;"/>')
@@ -868,7 +864,10 @@
 					code.unbind("click");
 					
 				})
-				
+				if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+					new WOW().init();
+				};
+				$(".work-main .aside").addClass("animated");
 			})
 			
 			
@@ -893,6 +892,10 @@
 			width: 250px;
 			background-color: #fff;
 			padding: 20px 25px;
+			&.animated{
+				visibility: visible!important;
+				animation-name: fadeInUp!important;
+				}
 			a{
 				display: block;
 				padding:10px 5px;

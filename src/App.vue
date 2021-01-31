@@ -16,7 +16,9 @@
 			SiteFooter
 		},
 		mounted(){
-		
+		this.$nextTick(function(){
+			
+		})
 		}
 	}
 </script>
