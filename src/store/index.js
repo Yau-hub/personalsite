@@ -12,7 +12,8 @@ export default new Vuex.Store({
 		"https://cn.bing.com//th?id=OHR.GlassIgloos_ZH-CN8927574757_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
 		"https://cn.bing.com//th?id=OHR.ChateauBeynac_ZH-CN8777586167_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
 		"https://cn.bing.com//th?id=OHR.BrightonSnow_ZH-CN0309526170_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
-	  ]
+	  ],
+	  aboutR:require("../assets/img/abou-r.jpg"),
 	  
   },
   getters:{

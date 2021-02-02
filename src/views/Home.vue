@@ -8,6 +8,9 @@
 			
 		</ul>
 	</div>
+	
+	<audio src="life/audio.mp3" autoplay loop class="bg-audio"></audio>
+	<button class="audio-btn"></button>
   </div>
 </template>
 
@@ -38,6 +41,17 @@ export default {
 			dots:true,
 			autoplay: true,
 			autoplaySpeed: 3000,
+		});
+		
+		$(".audio-btn").click(function(){
+			if($(".bg-audio")[0].paused){
+				$(this).removeClass("on")
+				$(".bg-audio")[0].play();
+				
+			}else{
+				$(this).addClass("on")
+				$(".bg-audio")[0].pause();
+			}
 		});
   	})
   },
@@ -93,7 +107,35 @@ export default {
 				}
 			}
 		}
-		
+		.bg-audio{
+			height: 0;
+			width: 0;
+			opacity: 0;
+			position: absolute;
+			left: 0;
+			bottom:0;
+			z-index: -10;
+		}
+		@keyframes rotate{
+			0%{transform: rotate(0deg);-ms-transform: rotate(0deg);-webkit-transform: rotate(0deg);}
+			100%{transform: rotate(360deg);-ms-transform: rotate(360deg);-webkit-transform: rotate(360deg);}
+		}
+		.audio-btn{
+			position: absolute;
+			right: 2%;
+			bottom:10%;
+			display: block;
+			width: 40px;
+			height: 40px;
+			border: 0;
+			outline: 0;
+			cursor: pointer;
+			z-index: 10;
+			background: url(../assets/img/stop-play.png) no-repeat center center;
+			background-size: 80%;
+			animation: rotate 2s linear infinite;
+		}
+		.audio-btn.on{background-image: url(../assets/img/replay.png);}
 		@media (max-width:1000px) {
 			.home-bn{
 				.slick-dots{
