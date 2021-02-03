@@ -4,22 +4,8 @@
 		<figure class="pic about-r bg-cover" :style="'background-image: url('+this.$store.state.aboutR+');'"></figure>
 		
 		<span class="txt">
-			<h2 class="tit">关于本站</h2>
-			
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			<p>本站简介本站简介本站简介本站简介本站简介本站简介</p>
-			本站简介本站简介本站简介本站简介本站简介本站简介本站简介
-			本站简介本站简介本站简介本站简介本站简介本站简介本站简介
-			本站简介本站简介本站简介本站简介本站简介本站简介本站简介
-			本站简介本站简介本站简介本站简介本站简介本站简介本站简介
-			本站简介本站简介
-			
+			{{this.$store.state.aboutTxt}}
+
 		</span>
 	
 	</div>
@@ -27,7 +13,24 @@
 </template>
 <script>
 	export default{
-		 name: 'About'
+		 name: 'About',
+		 methods:{
+			 htmlDecode(text){
+			         var temp = document.createElement("div");
+			         //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+			         temp.innerHTML = text;
+			         //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+			         var output = temp.innerText || temp.textContent;
+			         temp = null;
+			         return output;
+			     }
+		 },
+		 mounted(){
+			 let that = this;
+			 this.$nextTick(function(){
+				 $(".about .txt").html(that.htmlDecode($(".about .txt").html()))
+			 })
+		 }
 	}
 </script>
 <style lang="scss">
@@ -53,6 +56,9 @@
 				float: none;
 				margin: 0 auto 30px;
 				width: 100%;
+			}
+			.txt{
+				br{display: none;}
 			}
 		}
 	}
