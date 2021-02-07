@@ -10,3 +10,10 @@ $main-hover-color:#6495ED;
 	-ms-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
 }
+.absolute{
+	position: absolute;
+	left: 0;
+	right:0;
+	top:0;bottom:0;
+	margin: auto;
+}

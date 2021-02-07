@@ -59,7 +59,7 @@ button{ margin: 0; padding: 0;word-wrap: break-word; outline: none !important;}
 .slick-arrow{outline: none;}
 img{border: none;max-width: 100%;vertical-align: middle;}
 a {color: #333;text-decoration: none; -webkit-tap-highlight-color:rgba(0,0,0,0);word-wrap: break-word;/* 去掉链接触摸高亮 */}
-a:hover {color: #111e90;text-decoration: none;}
+a:hover {color: #6495ED;text-decoration: none;}
 a:focus {color: #333;outline: none;-moz-outline: none;}
 a:active {color: #333;}
 pre{
@@ -127,6 +127,9 @@ body{
 
 @media  (max-width: 1000px){
     body{padding-top: 52px;}
+}
+.page-main{
+	padding: 4% 0;
 }
 
 

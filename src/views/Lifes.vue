@@ -45,42 +45,7 @@ import fancybox from "@fancyapps/fancybox";
 			return{
 				col:5,
 				imgLsIndex:0,
-				 dataList: [
-				        {
-				          imgSrc: "life/Moment.jpg",
-				          time:"2020-05-20",
-				          title: "原来是只傻猫...",
-						  imgList:[
-							  {
-							  	url:"life/view.jpg"
-							  },
-							  {
-							  	url:"life/Moment.jpg"
-							  }
-						  ],
-						  showVideo:true,
-						  videoList:[
-							  {
-							  	url:"life/Moment.mp4"
-							  }
-						  ]
-				        },
-						{
-
-						  imgSrc: "life/view.jpg",
-						  time:"2020-05-20",
-						  title: "A test item!",
-						  imgList:[
-							  {
-							  	url:"life/Moment.jpg"
-							  }
-						  ],
-						  showVideo:false,
-						  videoList:[
-						  ]
-						}
-				
-				      ]
+				 dataList: this.$store.state.lifesDate,
 			}
 		},
 		methods:{
