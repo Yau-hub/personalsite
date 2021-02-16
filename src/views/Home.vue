@@ -47,7 +47,7 @@
 	
 	
 	
-	<audio src="life/audio.mp3" autoplay loop class="bg-audio"></audio>
+	<audio src="life/audio.mp3"  loop class="bg-audio"></audio>
 	<button class="audio-btn"></button>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
   },
   data(){
 	  return {
-		  logoUrl:require("../assets/img/sitelogo.jpg"),
+		   logoUrl:require("../assets/img/sitelogo.jpg"),
 		   banner:this.$store.state.homeBanner,
 	  }
   },
@@ -96,11 +96,11 @@ export default {
 		
 		$(".audio-btn").click(function(){
 			if($(".bg-audio")[0].paused){
-				$(this).removeClass("on")
+				$(this).addClass("on")
 				$(".bg-audio")[0].play();
 				
 			}else{
-				$(this).addClass("on")
+				$(this).removeClass("on")
 				$(".bg-audio")[0].pause();
 			}
 		});
@@ -212,11 +212,11 @@ export default {
 			outline: 0;
 			cursor: pointer;
 			z-index: 10;
-			background: url(../assets/img/stop-play.png) no-repeat center center;
+			background: url(../assets/img/replay.png) no-repeat center center;
 			background-size: 80%;
 			animation: rotate 2s linear infinite;
 		}
-		.audio-btn.on{background-image: url(../assets/img/replay.png);}
+		.audio-btn.on{background-image: url(../assets/img/stop-play.png);}
 		
 		.home-about{
 			margin-top: 3%;
