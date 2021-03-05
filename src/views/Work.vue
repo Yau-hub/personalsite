@@ -721,6 +721,10 @@
 						text:"参考链接",
 						data:[
 							{
+								title:"在vue-cli3中使用 amfe-flexible 和 px2rem-loader移动端适配",
+								href:"https://www.cnblogs.com/chz1905/p/13371982.html?utm_source=tuicool"
+							},
+							{
 								title:"https://github.com/kenwheeler/slick/",
 								href:"https://github.com/kenwheeler/slick/"
 							},
